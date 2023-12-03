@@ -2,13 +2,21 @@ import React from "react";
 import SidebarComponent from "../components/SidebarComponent";
 import SearchBox from "../components/SearchBox";
 import PopularsectionComponent from "../components/PopularsectionComponent";
+import { Col, Container, Row } from "react-bootstrap";
 
 const HeroPage = () => {
   return (
     <>
-      <SidebarComponent />
-      <SearchBox />
-      <PopularsectionComponent />
+      <Container fluid>
+        <Row>
+          <Col>
+            <SearchBox />
+          </Col>
+          <Col>
+            <PopularsectionComponent />
+          </Col>
+        </Row>
+      </Container>
     </>
   );
 };

@@ -22,8 +22,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           {/*PRIVATE ROUTE*/}
           <Route path="" element={<PrivateRoute />}>
             <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/search" element={<SearchPage />} />
-            <Route path="/booking" element={<BookingPage />} />
+            <Route path="/searchresult" element={<SearchPage />} />
+            <Route path="/bookings" element={<BookingPage />} />
           </Route>
         </Route>
       </Routes>

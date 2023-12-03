@@ -5,13 +5,12 @@ import { FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
 
 const HeaderComponent = () => {
   return (
-    <header>
+    <header className="p-2">
       <Navbar
-        className="shadow p-2 mb-4 bg-body-tertiary"
+        className="shadow p-2 mb-3 bg-body-tertiary"
         bg="light"
         variant="light"
         expand="lg"
-        sticky="top"
         collapseOnSelect
       >
         <Container>
