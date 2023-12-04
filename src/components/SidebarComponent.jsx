@@ -91,7 +91,7 @@ const SidebarComponent = () => {
         <Row>
           {mainMenu.map((item, index) => {
             return (
-              <Col xs={12} className="p-2 m-2">
+              <Col xs={12} className="p-2 m-2" key={index}>
                 <Link
                   className="text-decoration-none text-secondary"
                   to={item.link}
