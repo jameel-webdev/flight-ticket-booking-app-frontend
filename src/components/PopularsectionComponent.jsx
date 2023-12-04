@@ -32,12 +32,15 @@ const PopularsectionComponent = () => {
   ];
   return (
     <>
-      <div className="fs-5 fw-medium">Popular Search</div>
+      <div className="fs-5 fw-medium mt-2">Popular Search</div>
       <Container>
         <Row className="d-flex flex-column">
           {searchData.map((item, index) => {
             return (
-              <Col className="d-flex border border-1 rounded p-3 m-2 justify-content-between">
+              <Col
+                className="d-flex border border-1 rounded p-3 m-1 justify-content-between"
+                key={index}
+              >
                 <span>{item.airline}</span>
                 <span>{item.from}</span>
                 <span>

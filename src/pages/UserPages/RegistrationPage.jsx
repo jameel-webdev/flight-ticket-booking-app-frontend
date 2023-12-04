@@ -1,19 +1,43 @@
-import React, { useState } from "react";
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Button, Col, Container, Form, Row, Spinner } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { useRegisterMutation } from "../../slices/Users/userApiSlice";
+import { setCredentials } from "../../slices/Users/userSlice";
 
 const RegistrationPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const submitHandler = (e) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [register, { isLoading }] = useRegisterMutation();
+
+  const { userInfo } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate("/");
+    }
+  }, [navigate, userInfo]);
+
+  const submitHandler = async (e) => {
     e.preventDefault();
-    console.log(name, email, password);
+    try {
+      const res = await register({ name, email, password });
+      dispatch(setCredentials({ ...res }));
+      toast.success(res.message);
+      navigate("/");
+    } catch (err) {
+      toast.error(err?.data?.message || err.error);
+    }
   };
   return (
     <Container>
-      <Row className="justify-content-md-center mt-4">
+      <Row className="justify-content-md-center mt-3">
         <Col xs={12} md={6}>
           <h1>SignUp</h1>
           <Form onSubmit={submitHandler}>
@@ -44,11 +68,11 @@ const RegistrationPage = () => {
                 onChange={(e) => setPassword(e.target.value)}
               ></Form.Control>
             </Form.Group>
-            <br />
-            <Button type="submit" variant="primary" className="my-3">
+            <Button type="submit" variant="primary" className="my-2">
               Sign Up
             </Button>
-            <Row className="py-3">
+            {isLoading && <Spinner animation="grow" />}
+            <Row className="py-1">
               <Col>
                 Already have an account ? <Link to="/signin"> SignIn</Link>
               </Col>

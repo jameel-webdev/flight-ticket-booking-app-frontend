@@ -8,7 +8,7 @@ const SearchBox = () => {
       <div className="fs-4 fw-medium">Search flights</div>
       <div className="fs-6 mb-2">Enjoy hassle free bookings with Flypulse</div>
       <Card>
-        <CardBody className="d-flex flex-column gap-3 my-2 py-4">
+        <CardBody className="d-flex flex-column gap-2 mt-1 py-4">
           <span>
             <Badge
               pill
