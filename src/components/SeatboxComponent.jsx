@@ -5,10 +5,7 @@ const SeatboxComponent = () => {
   const seatsArray = [44];
   return (
     <Container>
-      <Row
-        className="d-flex flex-row gap-1 overflow-y-auto"
-        style={{ height: "100vh" }}
-      >
+      <Row className="d-flex flex-row gap-1 overflow-y-auto">
         <Col xs={3} className="text-center py-1 border rounded">
           1
         </Col>
