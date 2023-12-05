@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, Row, Spinner } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { useUpdateMutation } from "../../slices/Users/userApiSlice";
@@ -16,8 +16,8 @@ const ProfilePage = () => {
   const [updateUser, { isLoading }] = useUpdateMutation();
   const { userInfo } = useSelector((state) => state.auth);
   useEffect(() => {
-    setName(userInfo.name);
-    setEmail(userInfo.email);
+    setName(userInfo.name || userInfo.data.name);
+    setEmail(userInfo.email || userInfo.data.email);
   }, [userInfo.name, userInfo.email]);
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -71,6 +71,7 @@ const ProfilePage = () => {
             <Button type="submit" variant="primary" className="my-3">
               Update
             </Button>
+            {isLoading && <Spinner animation="grow" />}
           </Form>
         </Col>
       </Row>

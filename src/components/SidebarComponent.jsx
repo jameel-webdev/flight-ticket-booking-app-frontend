@@ -57,7 +57,7 @@ const SidebarComponent = () => {
     {
       title: "Bookings",
       icon: <FaSuitcase />,
-      link: "/bookings",
+      link: "/mybookings",
     },
     {
       title: "Support",
@@ -79,17 +79,17 @@ const SidebarComponent = () => {
     {
       title: "Flights",
       icon: <MdFlight />,
-      link: "/flights",
+      link: "/allflights",
     },
     {
       title: "Users",
       icon: <FaUser />,
-      link: "/users",
+      link: "/allusers",
     },
     {
       title: "Bookings",
       icon: <FaSuitcase />,
-      link: "/bookings",
+      link: "/allbookings",
     },
   ];
   const menuToBeRendered = userInfo?.isAdmin ? adminMenu : userMenu;

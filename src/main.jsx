@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
+import "./main.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Provider } from "react-redux";
 import store from "./slices/store.js";
@@ -12,6 +13,10 @@ import PrivateRoute from "./components/PrivateRoute.jsx";
 import ProfilePage from "./pages/UserPages/ProfilePage.jsx";
 import SearchPage from "./pages/FlightPages/SearchPage.jsx";
 import BookingPage from "./pages/BookingPages/BookingPage.jsx";
+import FlightPage from "./pages/FlightPages/FlightPage.jsx";
+import AdminBookingsPage from "./pages/BookingPages/AdminBookingsPage.jsx";
+import AdminFlightPage from "./pages/FlightPages/AdminFlightPage.jsx";
+import AdminUsersPage from "./pages/UserPages/AdminUsersPage.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
@@ -26,7 +31,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="" element={<PrivateRoute />}>
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/searchresult" element={<SearchPage />} />
-              <Route path="/bookings" element={<BookingPage />} />
+              <Route path="/flights" element={<FlightPage />} />
+              <Route path="/allflights" element={<AdminFlightPage />} />
+              <Route path="/mybookings" element={<BookingPage />} />
+              <Route path="/allbookings" element={<AdminBookingsPage />} />
+              <Route path="/allusers" element={<AdminUsersPage />} />
             </Route>
           </Route>
         </Routes>

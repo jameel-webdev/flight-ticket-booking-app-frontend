@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, Row, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -24,7 +24,6 @@ const LoginPage = () => {
   }, [navigate, userInfo]);
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log(email, password);
     try {
       const res = await login({ email, password }).unwrap();
       dispatch(setCredentials({ ...res }));
@@ -62,6 +61,7 @@ const LoginPage = () => {
             <Button type="submit" variant="primary" className="my-3">
               Sign In
             </Button>
+            {isLoading && <Spinner animation="grow" />}
             <Row className="py-3">
               <Col>
                 Don't have an account ? <Link to="/signup"> SignUp</Link>
