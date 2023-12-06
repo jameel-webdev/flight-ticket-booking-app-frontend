@@ -1,7 +1,6 @@
 import { apiSlice } from "../apiSlice";
 
 const USERS_URL = "/api/flights";
-
 export const flightApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     create: builder.mutation({

@@ -10,16 +10,16 @@ const bookingSlice = createSlice({
   name: "bookings",
   initialState,
   reducers: {
-    setCredentials: (state, action) => {
-      state.bookingInfo = action.payload;
+    setBookings: (state, action) => {
+      state.bookingInfo = { ...state.bookingInfo, ...action.payload };
       localStorage.setItem("bookingInfo", JSON.stringify(action.payload));
     },
-    removeCredentials: (state, action) => {
+    removeBookings: (state, action) => {
       state.bookingInfo = null;
       localStorage.removeItem("bookingInfo");
     },
   },
 });
 
-export const { setCredentials, removeCredentials } = bookingSlice.actions;
+export const { setBookings, removeBookings } = bookingSlice.actions;
 export default bookingSlice.reducer;

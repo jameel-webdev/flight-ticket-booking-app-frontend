@@ -2,18 +2,14 @@ import React, { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 
 const SeatboxComponent = ({ flightData, selectedSeats, setSelectedSeats }) => {
-  const [color, setColor] = useState("bg-secondary-subtle");
   const capacity = flightData?.capacity;
   const selectOrUnselectSeats = (seatNumber) => {
     if (selectedSeats.includes(seatNumber)) {
-      // Remove the seat from the selectedSeats array
       setSelectedSeats(selectedSeats.filter((seat) => seat !== seatNumber));
     } else {
-      // Add the seat to the selectedSeats array
       setSelectedSeats([...selectedSeats, seatNumber]);
     }
   };
-
   return (
     <Container>
       <Row
@@ -22,8 +18,12 @@ const SeatboxComponent = ({ flightData, selectedSeats, setSelectedSeats }) => {
       >
         {Array.from(Array(capacity).keys()).map((seat) => {
           const isSeatSelected = selectedSeats.includes(seat + 1);
-          const seatColor = isSeatSelected ? "bg-success" : "";
-          const cursorStyle = isSeatSelected ? "not-allowed" : "pointer";
+          const isSeatBooked = flightData?.seatsBooked.includes(seat + 1);
+          const seatColor = isSeatSelected
+            ? "bg-success"
+            : isSeatBooked
+            ? "bg-danger"
+            : "";
 
           return (
             <Col
@@ -32,10 +32,9 @@ const SeatboxComponent = ({ flightData, selectedSeats, setSelectedSeats }) => {
               key={seat}
             >
               <div
-                style={{ cursor: cursorStyle }}
+                style={{ cursor: isSeatBooked ? "not-allowed" : "pointer" }}
                 onClick={() => {
-                  // Only allow selecting/unselecting if the seat is not already booked
-                  if (!isSeatSelected) {
+                  if (!isSeatBooked) {
                     selectOrUnselectSeats(seat + 1);
                   }
                 }}

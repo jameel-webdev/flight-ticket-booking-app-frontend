@@ -19,6 +19,7 @@ import AdminFlightPage from "./pages/FlightPages/AdminFlightPage.jsx";
 import AdminUsersPage from "./pages/UserPages/AdminUsersPage.jsx";
 import AdminPrivateRoute from "./components/AdminPrivateRoute.jsx";
 import FlightformPage from "./pages/FlightPages/FlightformPage.jsx";
+import MybookingsPage from "./pages/BookingPages/MybookingPage.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
@@ -35,6 +36,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
               <Route path="/searchresult" element={<SearchPage />} />
               <Route path="/flights" element={<FlightPage />} />
               <Route path="/booknow/:_id" element={<BookingPage />} />
+              <Route path="/mybookings" element={<MybookingsPage />} />
             </Route>
             <Route path="" element={<AdminPrivateRoute />}>
               <Route path="/profile" element={<ProfilePage />} />

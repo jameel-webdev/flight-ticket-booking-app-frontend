@@ -5,8 +5,8 @@ const USERS_URL = "/api/bookings";
 export const bookingApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     book: builder.mutation({
-      query: (data, flightId) => ({
-        url: `${USERS_URL}/newbooking?flightId=${flightId}`,
+      query: (data) => ({
+        url: `${USERS_URL}/newbooking`,
         method: "POST",
         body: data,
       }),

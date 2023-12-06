@@ -7,13 +7,43 @@ import {
   Row,
   Spinner,
 } from "react-bootstrap";
+import { useBookMutation } from "../slices/Bookings/bookingApiSlice";
+import { toast } from "react-toastify";
+import { useEffect } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setBookings } from "../slices/Bookings/bookingSlice";
+import { setCredentials } from "../slices/Users/userSlice";
 
-const ItineraryComponent = ({
-  flightData,
-  selectedSeats,
-  booknow,
-  isLaoding,
-}) => {
+const ItineraryComponent = ({ flightData, selectedSeats }) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const flightId = flightData?._id;
+  const [booknow, { isLoading }] = useBookMutation();
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
+  const disabled = selectedSeats.length === 0 ? "disabled" : "";
+  const bookTicket = async () => {
+    try {
+      const res = await booknow({
+        flightId,
+        seatsBooked: selectedSeats,
+      }).unwrap();
+      dispatch(setBookings({ ...res }));
+      dispatch(setCredentials({ ...res.userData }));
+      console.log(res.user);
+      toast.success(res.message);
+      navigate("/mybookings");
+    } catch (err) {
+      toast.error(err?.data?.message || err.error);
+    }
+  };
+
+  useEffect(() => {
+    if (isButtonClicked) {
+      bookTicket();
+    }
+  }, [isButtonClicked]);
   return (
     <Container>
       <Row>
@@ -45,8 +75,12 @@ const ItineraryComponent = ({
               <strong>Price:</strong> ₹{" "}
               {flightData?.price * selectedSeats.length}
             </Card.Text>
-            {isLaoding && <Spinner animation="grow" />}
-            <Button variant="success" onClick={() => booknow}>
+            {isLoading && <Spinner animation="grow" />}
+            <Button
+              variant="success"
+              onClick={() => setIsButtonClicked(true)}
+              disabled={disabled}
+            >
               Book Now
             </Button>
           </CardBody>

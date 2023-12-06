@@ -7,6 +7,7 @@ import { useLogoutMutation } from "../slices/Users/userApiSlice";
 import { useNavigate } from "react-router-dom";
 import { removeCredentials } from "../slices/Users/userSlice";
 import { removeFlights } from "../slices/Flights/flightSlice";
+import { removeBookings } from "../slices/Bookings/bookingSlice";
 import { toast } from "react-toastify";
 
 const HeaderComponent = () => {
@@ -19,6 +20,7 @@ const HeaderComponent = () => {
       const res = await logout().unwrap();
       dispatch(removeCredentials());
       dispatch(removeFlights());
+      dispatch(removeBookings());
       navigate("/");
       toast.success(res.message);
     } catch (error) {}
