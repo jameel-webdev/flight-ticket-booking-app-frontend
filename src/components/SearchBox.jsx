@@ -1,6 +1,7 @@
 import React from "react";
 import { Badge, Button, Card, CardBody, Form } from "react-bootstrap";
 import { MdFlightTakeoff, MdFlightLand } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const SearchBox = () => {
   return (
@@ -60,12 +61,14 @@ const SearchBox = () => {
             </Form.Group>
             <Form.Group className="d-flex flex-row gap-2">
               <Form.Control className="p-2" type="date" />
-              <Button
-                className="p-3 bg-success"
-                as="input"
-                type="submit"
-                value="Search flights"
-              />
+              <Link to="/searchresult">
+                <Button
+                  className="p-3 bg-success"
+                  as="input"
+                  type="submit"
+                  value="Search flights"
+                />
+              </Link>
             </Form.Group>
           </Form>
         </CardBody>

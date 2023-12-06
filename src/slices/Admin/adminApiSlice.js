@@ -8,14 +8,13 @@ export const adminApiSlice = apiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
-    addflight: builder.mutation({
-      query: (data) => ({
-        url: `api/flights/addflight`,
-        method: "POST",
-        body: data,
+    allflights: builder.mutation({
+      query: () => ({
+        url: `api/flights/allflights`,
+        method: "GET",
       }),
     }),
-    allflight: builder.mutation({
+    allbookings: builder.mutation({
       query: () => ({
         url: `api/flights/allflights`,
         method: "GET",
@@ -23,8 +22,4 @@ export const adminApiSlice = apiSlice.injectEndpoints({
     }),
   }),
 });
-export const {
-  useAllusersMutation,
-  useAddflightMutation,
-  useAllflightMutation,
-} = adminApiSlice;
+export const { useAllusersMutation, useAllflightsMutation } = adminApiSlice;

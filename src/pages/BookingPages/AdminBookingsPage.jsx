@@ -6,7 +6,14 @@ const AdminBookingsPage = () => {
   return (
     <Container>
       <h3>All Bookings Detail</h3>
-      <Table striped bordered hover size="sm" className="overflow-y-auto">
+      <Table
+        striped
+        bordered
+        hover
+        size="sm"
+        className="overflow-y-auto"
+        style={{ height: "65vh" }}
+      >
         <thead>
           <tr>
             <th>Booking Id</th>

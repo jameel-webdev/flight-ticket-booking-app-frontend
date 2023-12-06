@@ -1,36 +1,54 @@
 import React from "react";
-import { Card, CardBody, Container, Row } from "react-bootstrap";
+import {
+  Button,
+  Card,
+  CardBody,
+  Container,
+  Row,
+  Spinner,
+} from "react-bootstrap";
 
-const ItineraryComponent = () => {
+const ItineraryComponent = ({
+  flightData,
+  selectedSeats,
+  booknow,
+  isLaoding,
+}) => {
   return (
     <Container>
       <Row>
         <Card>
           <CardBody>
-            <Card.Title className="border-bottom py-2">
+            <Card.Title className="border-bottom">
               Review your itinerary
             </Card.Title>
             <Card.Text>
-              <strong>Airline:</strong> SpiceJect
+              <strong>Airline:</strong> {flightData?.flightName}
             </Card.Text>
             <Card.Text>
-              <strong>Airline Code:</strong> 6E-3456
+              <strong>Airline Code:</strong> {flightData?.flightCode}
             </Card.Text>
             <Card.Text>
-              <strong>Origin:</strong> Mumbai
+              <strong>Origin:</strong> {flightData?.origin}
             </Card.Text>
-            <Card.Text className="border-bottom pb-3">
-              <strong>Destination:</strong> Bangalore
-            </Card.Text>
-            <Card.Text>
-              <strong>Journey Date:</strong> 12-12-2023
-            </Card.Text>
-            <Card.Text className="border-bottom pb-3">
-              <strong>Seats Selected:</strong> 12-12-2023
+            <Card.Text className="border-bottom pb-2">
+              <strong>Destination:</strong> {flightData?.destination}
             </Card.Text>
             <Card.Text>
-              <strong>Price:</strong> 12-12-2023
+              <strong>Journey Date:</strong> {flightData?.journeyDate}
             </Card.Text>
+            <Card.Text className="border-bottom pb-2">
+              <strong>Seats Selected: </strong>
+              {selectedSeats.join(", ")}
+            </Card.Text>
+            <Card.Text>
+              <strong>Price:</strong> ₹{" "}
+              {flightData?.price * selectedSeats.length}
+            </Card.Text>
+            {isLaoding && <Spinner animation="grow" />}
+            <Button variant="success" onClick={() => booknow}>
+              Book Now
+            </Button>
           </CardBody>
         </Card>
       </Row>

@@ -30,7 +30,7 @@ const AdminUsersPage = () => {
     <Container>
       <h3>All User Details</h3>
       {isLoading && <Spinner animation="grow" />}
-      <div className="overflow-y-scroll" style={{ height: "100vh" }}>
+      <div className="overflow-y-scroll" style={{ height: "65vh" }}>
         <Table striped bordered hover size="sm" className="overflow-y-auto">
           <thead>
             <tr>

@@ -3,11 +3,11 @@ import { Button, Container, Row, Spinner, Table } from "react-bootstrap";
 import SearchformComponent from "../../components/SearchformComponent";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useAllflightMutation } from "../../slices/Admin/adminApiSlice";
+import { useAllflightsMutation } from "../../slices/Admin/adminApiSlice";
 
 const AdminFlightPage = () => {
   const [allFlights, setAllFlights] = useState([]);
-  const [getAllFlights, { isLoading }] = useAllflightMutation();
+  const [getAllFlights, { isLoading }] = useAllflightsMutation();
   const getAllFlightsData = async () => {
     try {
       const res = await getAllFlights({}).unwrap();
@@ -37,7 +37,7 @@ const AdminFlightPage = () => {
             <Button variant="success">Add flight</Button>
           </Link>
         </div>
-        <div className="overflow-y-scroll" style={{ height: "100vh" }}>
+        <div className="overflow-y-scroll" style={{ height: "65vh" }}>
           <Table striped bordered hover size="sm">
             <thead>
               <tr>

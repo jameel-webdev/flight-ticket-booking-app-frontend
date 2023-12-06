@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLogoutMutation } from "../slices/Users/userApiSlice";
 import { useNavigate } from "react-router-dom";
 import { removeCredentials } from "../slices/Users/userSlice";
+import { removeFlights } from "../slices/Flights/flightSlice";
 import { toast } from "react-toastify";
 
 const HeaderComponent = () => {
@@ -17,6 +18,7 @@ const HeaderComponent = () => {
     try {
       const res = await logout().unwrap();
       dispatch(removeCredentials());
+      dispatch(removeFlights());
       navigate("/");
       toast.success(res.message);
     } catch (error) {}

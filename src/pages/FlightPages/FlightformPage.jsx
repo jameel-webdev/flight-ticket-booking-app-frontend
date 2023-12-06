@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import { useAddflightMutation } from "../slices/Admin/adminApiSlice";
+import { useCreateMutation } from "../../slices/Flights/flightApiSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -18,7 +18,7 @@ const FlightformPage = ({ show, setShow, handleSubmit }) => {
   const [price, setPrice] = useState(0);
   const [status, setStatus] = useState("");
   const navigate = useNavigate();
-  const [addFlight, { isLoading }] = useAddflightMutation();
+  const [addFlight, { isLoading }] = useCreateMutation();
   const handleForm = async (e) => {
     e.preventDefault();
     try {
