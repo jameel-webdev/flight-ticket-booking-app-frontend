@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 const MybookingsPage = () => {
   const { userInfo } = useSelector((state) => state.auth);
   const mybookings = userInfo.mybookings;
-  console.log(mybookings);
 
   return (
     <>
@@ -30,7 +29,7 @@ const MybookingsPage = () => {
         <tbody>
           {mybookings.map((item, index) => {
             return (
-              <tr>
+              <tr key={index}>
                 <td>{item._id}</td>
                 <td>{item.flightCode}</td>
                 <td>{item.flightName}</td>

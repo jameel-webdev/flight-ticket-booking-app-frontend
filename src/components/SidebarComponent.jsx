@@ -3,7 +3,6 @@ import { Col, Container, Dropdown, Row } from "react-bootstrap";
 import { TiHome } from "react-icons/ti";
 import { FaSuitcase, FaUser, FaHotel, FaBus } from "react-icons/fa";
 import { BiSupport } from "react-icons/bi";
-import { FaUnlock } from "react-icons/fa6";
 import { MdFlight } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -47,7 +46,7 @@ const SidebarComponent = () => {
     {
       title: "Home",
       icon: <TiHome />,
-      link: "/",
+      link: "/search",
     },
     {
       title: "Profile",
@@ -62,19 +61,19 @@ const SidebarComponent = () => {
     {
       title: "Support",
       icon: <BiSupport />,
-      link: "/support",
+      link: "/search",
     },
   ];
   const adminMenu = [
     {
       title: "Home",
       icon: <TiHome />,
-      link: "/",
+      link: "/search",
     },
     {
-      title: "Profile",
+      title: "My Trips",
       icon: <FaUser />,
-      link: "/profile",
+      link: "/mybookings",
     },
     {
       title: "Flights",
@@ -95,14 +94,11 @@ const SidebarComponent = () => {
   const menuToBeRendered = userInfo?.isAdmin ? adminMenu : userMenu;
   const noUser = userInfo ? menuToBeRendered : mainMenu;
   useEffect(() => {
-    // Set up event listener for window resize
     window.addEventListener("resize", handleResize);
-
-    // Clean up the event listener on component unmount
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []); // Empty dependency array to run the effect only once on mount
+  }, []);
   return (
     <div className="my-3">
       <Container className="fs-4">

@@ -31,7 +31,6 @@ const ItineraryComponent = ({ flightData, selectedSeats }) => {
       }).unwrap();
       dispatch(setBookings({ ...res }));
       dispatch(setCredentials({ ...res.userData }));
-      console.log(res.user);
       toast.success(res.message);
       navigate("/mybookings");
     } catch (err) {

@@ -19,7 +19,7 @@ const LoginPage = () => {
   const { userInfo } = useSelector((state) => state.auth);
   useEffect(() => {
     if (userInfo) {
-      navigate("/");
+      navigate("/search");
     }
   }, [navigate, userInfo]);
   const submitHandler = async (e) => {
@@ -28,7 +28,7 @@ const LoginPage = () => {
       const res = await login({ email, password }).unwrap();
       dispatch(setCredentials({ ...res }));
       toast.success(res.message || res.data.message);
-      navigate("/");
+      navigate("/search");
     } catch (err) {
       toast.error(err.data.message || err.error);
     }

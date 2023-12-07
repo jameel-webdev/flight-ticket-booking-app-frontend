@@ -9,7 +9,7 @@ export const adminApiSlice = apiSlice.injectEndpoints({
       }),
     }),
     allflights: builder.mutation({
-      query: () => ({
+      query: (params) => ({
         url: `api/flights/allflights`,
         method: "GET",
       }),

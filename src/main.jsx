@@ -5,7 +5,7 @@ import "./main.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Provider } from "react-redux";
 import store from "./slices/store.js";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import HeroPage from "./pages/HeroPage.jsx";
 import LoginPage from "./pages/UserPages/LoginPage.jsx";
 import RegistrationPage from "./pages/UserPages/RegistrationPage.jsx";
@@ -20,6 +20,7 @@ import AdminUsersPage from "./pages/UserPages/AdminUsersPage.jsx";
 import AdminPrivateRoute from "./components/AdminPrivateRoute.jsx";
 import FlightformPage from "./pages/FlightPages/FlightformPage.jsx";
 import MybookingsPage from "./pages/BookingPages/MybookingPage.jsx";
+import CommonRoute from "./components/CommonRoute.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
@@ -30,20 +31,24 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route index={true} path="/" element={<HeroPage />} />
             <Route path="/signup" element={<RegistrationPage />} />
             <Route path="/signin" element={<LoginPage />} />
+            {/*COMMON ROUTE*/}
+            <Route path="" element={<CommonRoute />}>
+              <Route path="/search" element={<SearchPage />} />
+              <Route path="/mybookings" element={<MybookingsPage />} />
+            </Route>
             {/*PRIVATE ROUTE*/}
             <Route path="" element={<PrivateRoute />}>
               <Route path="/profile" element={<ProfilePage />} />
-              <Route path="/searchresult" element={<SearchPage />} />
-              <Route path="/flights" element={<FlightPage />} />
               <Route path="/booknow/:_id" element={<BookingPage />} />
-              <Route path="/mybookings" element={<MybookingsPage />} />
+              <Route path="*" element={<Navigate to="/search" replace />} />
             </Route>
+            {/*PRIVATE ROUTE*/}
             <Route path="" element={<AdminPrivateRoute />}>
-              <Route path="/profile" element={<ProfilePage />} />
               <Route path="/flightform" element={<FlightformPage />} />
               <Route path="/allusers" element={<AdminUsersPage />} />
               <Route path="/allbookings" element={<AdminBookingsPage />} />
               <Route path="/allflights" element={<AdminFlightPage />} />
+              <Route path="/" element={<Navigate to="/search" replace />} />
             </Route>
           </Route>
         </Routes>

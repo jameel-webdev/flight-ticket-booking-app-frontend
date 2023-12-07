@@ -35,7 +35,7 @@ const HeaderComponent = () => {
         collapseOnSelect
       >
         <Container>
-          <LinkContainer to="/">
+          <LinkContainer to="/search">
             <Navbar.Brand className="fs-4">Fly Pulse</Navbar.Brand>
           </LinkContainer>
           {userInfo ? (

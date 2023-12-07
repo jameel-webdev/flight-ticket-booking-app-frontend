@@ -5,7 +5,7 @@ import { Navigate, Outlet } from "react-router-dom";
 const AdminPrivateRoute = () => {
   const { userInfo } = useSelector((state) => state.auth);
   const adminUser = userInfo.isAdmin ? true : false;
-  return adminUser ? <Outlet /> : <Navigate to="/" replace />;
+  return adminUser ? <Outlet /> : <Navigate to="/search" replace />;
 };
 
 export default AdminPrivateRoute;

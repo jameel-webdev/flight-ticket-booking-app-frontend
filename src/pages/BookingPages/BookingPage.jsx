@@ -10,7 +10,6 @@ const BookingPage = () => {
   const flightId = useParams()._id;
   const [flightIdData, setFlightIdData] = useState([]);
   const [selectedSeats, setSelectedSeats] = useState([]);
-  console.log(selectedSeats);
   const [getFlightIdData, { isLoading }] = useGetflightMutation();
   const getFlightData = async () => {
     try {
