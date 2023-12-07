@@ -14,6 +14,14 @@ export const adminApiSlice = apiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
+    getflights: builder.query({
+      query: ({ keyword }) => ({
+        url: `api/flights/allflights`,
+        method: "GET",
+        params: { keyword },
+      }),
+      providesTags: ["Flight"],
+    }),
     allbookings: builder.mutation({
       query: () => ({
         url: `api/flights/allflights`,

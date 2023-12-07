@@ -94,14 +94,16 @@ const FlightformPage = ({ show, setShow, handleSubmit }) => {
                 onChange={(e) => setOrigin(e.target.value)}
               >
                 <option>Where From ?</option>
+                <option value="Ahmedabad-AMD">Ahmedabad-AMD</option>
                 <option value="Bangalore-BLR">Bangalore-BLR</option>
-                <option value="Delhi-DEL">Delhi-DEL</option>
-                <option value="Mumbai-BOM">Mumbai-BOM</option>
                 <option value="Chennai-MAA">Chennai-MAA</option>
-                <option value="Kolkata-CCU">Kolkata-CCU</option>
+                <option value="Delhi-DEL">Delhi-DEL</option>
+                <option value="Goa-GOI">Goa-GOI</option>
                 <option value="Hyderabad-HYD">Hyderabad-HYD</option>
                 <option value="Kochi-COK">Kochi-COK</option>
-                <option value="Ahmedabad-AMD">Ahmedabad-AMD</option>
+                <option value="Kolkata-CCU">Kolkata-CCU</option>
+                <option value="Mumbai-BOM">Mumbai-BOM</option>
+                <option value="Pune-PNQ">Pune-PNQ</option>
               </Form.Select>
             </Form.Group>
           </Col>
@@ -116,14 +118,16 @@ const FlightformPage = ({ show, setShow, handleSubmit }) => {
                 onChange={(e) => setDestination(e.target.value)}
               >
                 <option>Where To ?</option>
+                <option value="Ahmedabad-AMD">Ahmedabad-AMD</option>
                 <option value="Bangalore-BLR">Bangalore-BLR</option>
-                <option value="Delhi-DEL">Delhi-DEL</option>
-                <option value="Mumbai-BOM">Mumbai-BOM</option>
                 <option value="Chennai-MAA">Chennai-MAA</option>
-                <option value="Kolkata-CCU">Kolkata-CCU</option>
+                <option value="Delhi-DEL">Delhi-DEL</option>
+                <option value="Goa-GOI">Goa-GOI</option>
                 <option value="Hyderabad-HYD">Hyderabad-HYD</option>
                 <option value="Kochi-COK">Kochi-COK</option>
-                <option value="Ahmedabad-AMD">Ahmedabad-AMD</option>
+                <option value="Kolkata-CCU">Kolkata-CCU</option>
+                <option value="Mumbai-BOM">Mumbai-BOM</option>
+                <option value="Pune-PNQ">Pune-PNQ</option>
               </Form.Select>
             </Form.Group>
           </Col>
@@ -174,8 +178,8 @@ const FlightformPage = ({ show, setShow, handleSubmit }) => {
             >
               <option>Choose flight type</option>
               <option value="Economy">Economy</option>
-              <option value="First-Class">First Class</option>
-              <option value="Business-Class">Business Class</option>
+              <option value="First Class">First Class</option>
+              <option value="Business Class">Business Class</option>
             </Form.Select>
           </Col>
           <Col xs={6}>
