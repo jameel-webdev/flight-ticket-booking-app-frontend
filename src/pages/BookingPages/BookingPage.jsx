@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Col, Container, Row, Spinner } from "react-bootstrap";
 import ItineraryComponent from "../../components/ItineraryComponent";
 import SeatboxComponent from "../../components/SeatboxComponent";
-import { toast } from "react-toastify";
 import { useGetflightByIdQuery } from "../../slices/Flights/flightApiSlice";
 import { useParams } from "react-router-dom";
 

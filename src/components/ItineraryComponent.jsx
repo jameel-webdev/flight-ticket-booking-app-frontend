@@ -13,7 +13,6 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setBookings } from "../slices/Bookings/bookingSlice";
 import { setCredentials } from "../slices/Users/userSlice";
 
 const ItineraryComponent = ({ flightData, selectedSeats }) => {
@@ -29,7 +28,6 @@ const ItineraryComponent = ({ flightData, selectedSeats }) => {
         flightId,
         seatsBooked: selectedSeats,
       }).unwrap();
-      dispatch(setBookings({ ...res }));
       dispatch(setCredentials({ ...res.userData }));
       toast.success(res.message);
       navigate("/mybookings");
