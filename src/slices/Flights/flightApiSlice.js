@@ -1,29 +1,34 @@
 import { apiSlice } from "../apiSlice";
 
-const USERS_URL = "/api/flights";
+const FLIGHT_URL = "/api/flights";
 export const flightApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    create: builder.mutation({
+    addflight: builder.mutation({
       query: (data) => ({
-        url: `${USERS_URL}/addflight`,
+        url: `${FLIGHT_URL}/addflight`,
         method: "POST",
         body: data,
       }),
     }),
-    getflight: builder.mutation({
-      query: (flightId) => ({
-        url: `${USERS_URL}/${flightId}`,
-        method: "GET",
+    getallflights: builder.query({
+      query: ({ search }) => ({
+        url: `${FLIGHT_URL}/getflights`,
+        params: search,
       }),
     }),
-    update: builder.mutation({
-      query: (data) => ({
-        url: `${USERS_URL}/:flightId`,
-        method: "PUT",
-        body: data,
+    getflightById: builder.query({
+      query: (flightId) => ({
+        url: `${FLIGHT_URL}/${flightId}`,
+        providesTags: (result, error, flightId) => [
+          { type: "Flight", id: flightId },
+        ],
       }),
     }),
   }),
 });
-export const { useCreateMutation, useUpdateMutation, useGetflightMutation } =
-  flightApiSlice;
+export const {
+  useAddflightMutation,
+  useGetallflightsQuery,
+  useGetflightByIdQuery,
+  useGetflightsQuery,
+} = flightApiSlice;

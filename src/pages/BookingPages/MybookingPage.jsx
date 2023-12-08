@@ -1,6 +1,7 @@
 import React from "react";
-import { Table } from "react-bootstrap";
+import { Button, Container, Table } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const MybookingsPage = () => {
   const { userInfo } = useSelector((state) => state.auth);
@@ -8,7 +9,12 @@ const MybookingsPage = () => {
 
   return (
     <>
-      <div>Mybookings</div>
+      <Container className="d-flex justify-content-between my-2">
+        <h3>My Trips</h3>
+        <Link to="/search">
+          <Button>Book One More</Button>
+        </Link>
+      </Container>
       <Table
         striped
         bordered
@@ -34,7 +40,7 @@ const MybookingsPage = () => {
                 <td>{item.flightCode}</td>
                 <td>{item.flightName}</td>
                 <td>{item.journeyDate}</td>
-                <td>{item.seatsBooked.map((i) => i)}</td>
+                <td>{item.seatsBooked.map((i) => i).join(", ")}</td>
               </tr>
             );
           })}

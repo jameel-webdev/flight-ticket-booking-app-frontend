@@ -17,12 +17,12 @@ import { setBookings } from "../slices/Bookings/bookingSlice";
 import { setCredentials } from "../slices/Users/userSlice";
 
 const ItineraryComponent = ({ flightData, selectedSeats }) => {
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
+  const disabled = selectedSeats.length === 0 ? "disabled" : "";
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const flightId = flightData?._id;
   const [booknow, { isLoading }] = useBookMutation();
-  const [isButtonClicked, setIsButtonClicked] = useState(false);
-  const disabled = selectedSeats.length === 0 ? "disabled" : "";
   const bookTicket = async () => {
     try {
       const res = await booknow({

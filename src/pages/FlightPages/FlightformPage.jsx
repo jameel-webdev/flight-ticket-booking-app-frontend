@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import { useCreateMutation } from "../../slices/Flights/flightApiSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useAddflightMutation } from "../../slices/Flights/flightApiSlice";
 
-const FlightformPage = ({ show, setShow, handleSubmit }) => {
-  const [formData, setFormData] = useState({});
+const FlightformPage = () => {
   const [flightName, setFlightName] = useState("");
   const [flightCode, setFlightCode] = useState("");
   const [journeyDate, setJourneyDate] = useState("");
@@ -18,7 +17,7 @@ const FlightformPage = ({ show, setShow, handleSubmit }) => {
   const [price, setPrice] = useState(0);
   const [status, setStatus] = useState("");
   const navigate = useNavigate();
-  const [addFlight, { isLoading }] = useCreateMutation();
+  const [addFlight, { isLoading }] = useAddflightMutation();
   const handleForm = async (e) => {
     e.preventDefault();
     try {
@@ -35,17 +34,24 @@ const FlightformPage = ({ show, setShow, handleSubmit }) => {
         price,
         status,
       }).unwrap();
-      setFormData({ ...res });
       navigate("/allflights");
+      toast.success(res.message);
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }
   };
+  const getCurrentDate = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const day = String(today.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
   return (
-    <Container className="card">
+    <Container className="card px-3 py-4">
       <Form onSubmit={handleForm}>
         <Row>
-          <Col xs={4}>
+          <Col xs={6} md={4}>
             <Form.Group>
               <Form.Label>
                 <strong>Airline Name</strong>
@@ -58,7 +64,7 @@ const FlightformPage = ({ show, setShow, handleSubmit }) => {
               />
             </Form.Group>
           </Col>
-          <Col xs={4}>
+          <Col xs={6} md={4}>
             <Form.Group>
               <Form.Label>
                 <strong>Flight Code</strong>
@@ -71,7 +77,7 @@ const FlightformPage = ({ show, setShow, handleSubmit }) => {
               />
             </Form.Group>
           </Col>
-          <Col xs={4}>
+          <Col xs={6} md={4}>
             <Form.Group>
               <Form.Label>
                 <strong>Journey Date</strong>
@@ -80,10 +86,11 @@ const FlightformPage = ({ show, setShow, handleSubmit }) => {
                 type="date"
                 value={journeyDate}
                 onChange={(e) => setJourneyDate(e.target.value)}
+                min={getCurrentDate()}
               />
             </Form.Group>
           </Col>
-          <Col xs={6}>
+          <Col xs={6} md={4}>
             <Form.Group>
               <Form.Label>
                 <strong>Origin</strong>
@@ -107,7 +114,7 @@ const FlightformPage = ({ show, setShow, handleSubmit }) => {
               </Form.Select>
             </Form.Group>
           </Col>
-          <Col xs={6}>
+          <Col xs={6} md={4}>
             <Form.Group>
               <Form.Label>
                 <strong>Destination</strong>
@@ -131,43 +138,7 @@ const FlightformPage = ({ show, setShow, handleSubmit }) => {
               </Form.Select>
             </Form.Group>
           </Col>
-          <Col xs={6}>
-            <Form.Group>
-              <Form.Label>
-                <strong>Departure Time</strong>
-              </Form.Label>
-              <Form.Control
-                type="time"
-                value={departureTime}
-                onChange={(e) => setDepartureTime(e.target.value)}
-              />
-            </Form.Group>
-          </Col>
-          <Col xs={6}>
-            <Form.Group>
-              <Form.Label>
-                <strong>Arrival Time</strong>
-              </Form.Label>
-              <Form.Control
-                type="time"
-                value={arrivalTime}
-                onChange={(e) => setArrivalTime(e.target.value)}
-              />
-            </Form.Group>
-          </Col>
-          <Col xs={6}>
-            <Form.Group>
-              <Form.Label>
-                <strong>Capacity</strong>
-              </Form.Label>
-              <Form.Control
-                type="number"
-                value={capacity}
-                onChange={(e) => setCapacity(e.target.value)}
-              />
-            </Form.Group>
-          </Col>
-          <Col xs={6}>
+          <Col xs={6} md={4}>
             <Form.Label>
               <strong>Flight Type</strong>
             </Form.Label>
@@ -182,19 +153,31 @@ const FlightformPage = ({ show, setShow, handleSubmit }) => {
               <option value="Business Class">Business Class</option>
             </Form.Select>
           </Col>
-          <Col xs={6}>
+          <Col xs={6} md={4}>
             <Form.Group>
               <Form.Label>
-                <strong>Fare</strong>
+                <strong>Departure Time</strong>
               </Form.Label>
               <Form.Control
-                type="number"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
+                type="time"
+                value={departureTime}
+                onChange={(e) => setDepartureTime(e.target.value)}
               />
             </Form.Group>
           </Col>
-          <Col xs={6}>
+          <Col xs={6} md={4}>
+            <Form.Group>
+              <Form.Label>
+                <strong>Arrival Time</strong>
+              </Form.Label>
+              <Form.Control
+                type="time"
+                value={arrivalTime}
+                onChange={(e) => setArrivalTime(e.target.value)}
+              />
+            </Form.Group>
+          </Col>
+          <Col xs={6} md={4}>
             <Form.Group>
               <Form.Label>
                 <strong>Flight Status</strong>
@@ -210,6 +193,30 @@ const FlightformPage = ({ show, setShow, handleSubmit }) => {
                 <option value="Delayed">Delayed</option>
                 <option value="Cancelled">Cancelled</option>
               </Form.Select>
+            </Form.Group>
+          </Col>
+          <Col xs={6} md={4}>
+            <Form.Group>
+              <Form.Label>
+                <strong>Capacity</strong>
+              </Form.Label>
+              <Form.Control
+                type="number"
+                value={capacity}
+                onChange={(e) => setCapacity(e.target.value)}
+              />
+            </Form.Group>
+          </Col>
+          <Col xs={6} md={4}>
+            <Form.Group>
+              <Form.Label>
+                <strong>Fare</strong>
+              </Form.Label>
+              <Form.Control
+                type="number"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+              />
             </Form.Group>
           </Col>
           <Col className="d-flex flex-row-reverse m-2">

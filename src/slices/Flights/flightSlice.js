@@ -10,16 +10,16 @@ const flightSlice = createSlice({
   name: "flights",
   initialState,
   reducers: {
-    setFlights: (state, action) => {
+    setFlightData: (state, action) => {
       state.flightInfo = { ...state.flightInfo, ...action.payload };
       localStorage.setItem("flightInfo", JSON.stringify(action.payload));
     },
-    removeFlights: (state, action) => {
+    removeFlightData: (state, action) => {
       state.flightInfo = null;
       localStorage.removeItem("flightInfo");
     },
   },
 });
 
-export const { setFlights, removeFlights } = flightSlice.actions;
+export const { setFlightData, removeFlightData } = flightSlice.actions;
 export default flightSlice.reducer;

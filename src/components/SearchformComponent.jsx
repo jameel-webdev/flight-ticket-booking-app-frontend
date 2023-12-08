@@ -1,37 +1,33 @@
 import React, { useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import { useSelector } from "react-redux";
 
-const SearchformComponent = ({ setFlightsData }) => {
+const SearchformComponent = ({ setSelectedSearch }) => {
   const [origin, setOrigin] = useState("");
   const [destination, setDestination] = useState("");
   const [journeyDate, setJourneyDate] = useState("");
-  const { flightInfo } = useSelector((state) => state.flights);
-  const allData = flightInfo.data;
-  const [searchResult, setSearchResult] = useState({});
-  const filteredFlights = allData.filter((flight) => {
-    return Object.entries(searchResult).every(([key, value]) => {
-      return value === "" || flight[key] === value;
-    });
-  });
-  console.log(filteredFlights);
   const handleSearch = (e) => {
     e.preventDefault();
-    setSearchResult({
+    setSelectedSearch({
       origin,
       destination,
       journeyDate,
     });
-    setFlightsData(filteredFlights);
+  };
+  const getCurrentDate = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const day = String(today.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
   };
   return (
     <Container>
-      <Row>
+      <Row className="card py-3">
         <Form
-          className="d-flex gap-4 py-3 border-bottom"
           onSubmit={handleSearch}
+          className="d-flex flex-wrap justify-content-between"
         >
-          <Col xs={3}>
+          <Col sm={12} md={3}>
             <Form.Group>
               <Form.Select
                 aria-label="Default select example"
@@ -52,7 +48,7 @@ const SearchformComponent = ({ setFlightsData }) => {
               </Form.Select>
             </Form.Group>
           </Col>
-          <Col xs={3}>
+          <Col sm={12} md={3}>
             <Form.Group>
               <Form.Select
                 aria-label="Default select example"
@@ -73,23 +69,19 @@ const SearchformComponent = ({ setFlightsData }) => {
               </Form.Select>
             </Form.Group>
           </Col>
-          <Col xs={3}>
+          <Col sm={12} md={3}>
             <Form.Group>
               <Form.Control
                 type="date"
                 value={journeyDate}
                 onChange={(e) => setJourneyDate(e.target.value)}
+                min={getCurrentDate()}
               />
             </Form.Group>
           </Col>
-          <Col xs={3}>
+          <Col sm={12} md={2}>
             <Form.Group>
-              <Button
-                as="input"
-                type="submit"
-                value="Search flights"
-                onClick={() => setIsButtonClicked(true)}
-              />
+              <Button as="input" type="submit" value="Search" />
             </Form.Group>
           </Col>
         </Form>

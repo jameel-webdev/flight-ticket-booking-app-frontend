@@ -1,13 +1,11 @@
-import React from "react";
-import { Container, Navbar, Nav, NavDropdown } from "react-bootstrap";
+import React, { useEffect } from "react";
+import { Container, Navbar, Nav, NavDropdown, Spinner } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { useLogoutMutation } from "../slices/Users/userApiSlice";
 import { useNavigate } from "react-router-dom";
 import { removeCredentials } from "../slices/Users/userSlice";
-import { removeFlights } from "../slices/Flights/flightSlice";
-import { removeBookings } from "../slices/Bookings/bookingSlice";
 import { toast } from "react-toastify";
 
 const HeaderComponent = () => {
@@ -19,12 +17,15 @@ const HeaderComponent = () => {
     try {
       const res = await logout().unwrap();
       dispatch(removeCredentials());
-      dispatch(removeFlights());
-      dispatch(removeBookings());
       navigate("/");
       toast.success(res.message);
     } catch (error) {}
   };
+  useEffect(() => {
+    if (!userInfo) {
+      navigate("/");
+    }
+  }, [userInfo]);
   return (
     <header className="p-2">
       <Navbar
@@ -35,13 +36,16 @@ const HeaderComponent = () => {
         collapseOnSelect
       >
         <Container>
-          <LinkContainer to="/search">
+          {isLoading && <Spinner animation="grow" />}
+          <LinkContainer to="/">
             <Navbar.Brand className="fs-4">Fly Pulse</Navbar.Brand>
           </LinkContainer>
           {userInfo ? (
             <NavDropdown
               title={userInfo.name || userInfo?.data?.name}
               id="username"
+              className="me-2 d-inline"
+              style={{ width: "10rem" }}
             >
               <NavDropdown.Item onClick={logoutHandler}>
                 Logout

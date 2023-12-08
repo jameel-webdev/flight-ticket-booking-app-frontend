@@ -12,14 +12,14 @@ import RegistrationPage from "./pages/UserPages/RegistrationPage.jsx";
 import ProfilePage from "./pages/UserPages/ProfilePage.jsx";
 import SearchPage from "./pages/FlightPages/SearchPage.jsx";
 import BookingPage from "./pages/BookingPages/BookingPage.jsx";
-import AdminBookingsPage from "./pages/BookingPages/AdminBookingsPage.jsx";
-import AdminFlightPage from "./pages/FlightPages/AdminFlightPage.jsx";
-import AdminUsersPage from "./pages/UserPages/AdminUsersPage.jsx";
 import FlightformPage from "./pages/FlightPages/FlightformPage.jsx";
 import MybookingsPage from "./pages/BookingPages/MybookingPage.jsx";
 import CommonRoute from "./components/Routes/CommonRoute.jsx";
 import PrivateRoute from "./components/Routes/PrivateRoute.jsx";
 import AdminPrivateRoute from "./components/Routes/AdminPrivateRoute.jsx";
+import AdminBookingsPage from "./pages/AdminPages/AdminBookingsPage.jsx";
+import AdminUsersPage from "./pages/AdminPages/AdminUsersPage.jsx";
+import AdminFlightPage from "./pages/AdminPages/AdminFlightPage.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
@@ -33,21 +33,23 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             {/*COMMON ROUTE*/}
             <Route path="" element={<CommonRoute />}>
               <Route path="/search" element={<SearchPage />} />
+              <Route path="/booknow/:_id" element={<BookingPage />} />
               <Route path="/mybookings" element={<MybookingsPage />} />
             </Route>
             {/*PRIVATE ROUTE*/}
             <Route path="" element={<PrivateRoute />}>
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/booknow/:_id" element={<BookingPage />} />
-              <Route path="*" element={<Navigate to="/search" replace />} />
+              <Route path="/mybookings" element={<MybookingsPage />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Route>
-            {/*PRIVATE ROUTE*/}
+            {/*ADMIN PRIVATE ROUTE*/}
             <Route path="" element={<AdminPrivateRoute />}>
               <Route path="/flightform" element={<FlightformPage />} />
               <Route path="/allusers" element={<AdminUsersPage />} />
               <Route path="/allbookings" element={<AdminBookingsPage />} />
               <Route path="/allflights" element={<AdminFlightPage />} />
-              <Route path="/" element={<Navigate to="/search" replace />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Route>
           </Route>
         </Routes>

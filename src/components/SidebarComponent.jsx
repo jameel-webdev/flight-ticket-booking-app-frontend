@@ -126,8 +126,8 @@ const SidebarComponent = () => {
                 Menus
               </Dropdown.Toggle>
 
-              <Dropdown.Menu>
-                {menuToBeRendered.map((item, index) => {
+              <Dropdown.Menu key={noUser.title}>
+                {noUser.map((item, index) => {
                   return (
                     <>
                       <Dropdown.Item

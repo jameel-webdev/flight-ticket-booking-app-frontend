@@ -2,40 +2,34 @@ import React, { useEffect, useState } from "react";
 import { Col, Container, Row, Spinner } from "react-bootstrap";
 import ItineraryComponent from "../../components/ItineraryComponent";
 import SeatboxComponent from "../../components/SeatboxComponent";
-import { useGetflightMutation } from "../../slices/Flights/flightApiSlice";
 import { toast } from "react-toastify";
+import { useGetflightByIdQuery } from "../../slices/Flights/flightApiSlice";
 import { useParams } from "react-router-dom";
 
 const BookingPage = () => {
-  const flightId = useParams()._id;
-  const [flightIdData, setFlightIdData] = useState([]);
   const [selectedSeats, setSelectedSeats] = useState([]);
-  const [getFlightIdData, { isLoading }] = useGetflightMutation();
-  const getFlightData = async () => {
-    try {
-      const res = await getFlightIdData(flightId).unwrap();
-      setFlightIdData({ ...res });
-    } catch (err) {
-      toast.error(err?.data?.message || err.error);
-    }
-  };
+  const flightParams = useParams();
+  const [flightIdData, setFlightIdData] = useState([]);
+  const { data: flightData, isLoading } = useGetflightByIdQuery(
+    flightParams._id
+  );
   useEffect(() => {
-    getFlightData();
-  }, []);
+    if (!isLoading && flightData) {
+      setFlightIdData(flightData);
+    }
+  }, [flightData, isLoading]);
   return (
     <div>
       <Container>
-        {isLoading ? (
-          <Spinner animation="grow" />
-        ) : (
+        {flightData && flightIdData ? (
           <Row>
-            <Col xs={8}>
+            <Col xs={12} sm={6} md={8}>
               <ItineraryComponent
                 flightData={flightIdData.flight}
                 selectedSeats={selectedSeats}
               />
             </Col>
-            <Col xs={4}>
+            <Col xs={12} md={4}>
               <SeatboxComponent
                 flightData={flightIdData.flight}
                 selectedSeats={selectedSeats}
@@ -43,6 +37,8 @@ const BookingPage = () => {
               />
             </Col>
           </Row>
+        ) : (
+          <Spinner animation="grow" />
         )}
       </Container>
     </div>

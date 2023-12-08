@@ -13,7 +13,7 @@ function App() {
       <Container fluid>
         <ToastContainer />
         <Row className="overflow-x-hidden overflow-y-hidden">
-          <Col xs={2}>
+          <Col sm={12} md={2}>
             <SidebarComponent />
           </Col>
           <Col>

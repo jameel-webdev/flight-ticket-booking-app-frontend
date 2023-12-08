@@ -31,6 +31,9 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    getallusers: builder.query({
+      query: () => `${USERS_URL}/allusers`,
+    }),
   }),
 });
 export const {
@@ -38,4 +41,5 @@ export const {
   useLogoutMutation,
   useRegisterMutation,
   useUpdateMutation,
+  useGetallusersQuery,
 } = usersApiSlice;
