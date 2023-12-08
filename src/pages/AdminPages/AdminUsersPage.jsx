@@ -67,7 +67,7 @@ const AdminUsersPage = () => {
           </Table>
         </div>
       ) : (
-        <Spinner />
+        <Spinner animation="grow" />
       )}
     </Container>
   );

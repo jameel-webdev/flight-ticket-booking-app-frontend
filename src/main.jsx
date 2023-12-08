@@ -41,7 +41,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/booknow/:_id" element={<BookingPage />} />
               <Route path="/mybookings" element={<MybookingsPage />} />
-              <Route path="*" element={<Navigate to="/" replace />} />
             </Route>
             {/*ADMIN PRIVATE ROUTE*/}
             <Route path="" element={<AdminPrivateRoute />}>
@@ -49,7 +48,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
               <Route path="/allusers" element={<AdminUsersPage />} />
               <Route path="/allbookings" element={<AdminBookingsPage />} />
               <Route path="/allflights" element={<AdminFlightPage />} />
-              <Route path="*" element={<Navigate to="/" replace />} />
             </Route>
           </Route>
         </Routes>
