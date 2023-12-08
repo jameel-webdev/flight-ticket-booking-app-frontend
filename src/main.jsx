@@ -35,6 +35,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
               <Route path="/search" element={<SearchPage />} />
               <Route path="/booknow/:_id" element={<BookingPage />} />
               <Route path="/mybookings" element={<MybookingsPage />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Route>
             {/*PRIVATE ROUTE*/}
             <Route path="" element={<PrivateRoute />}>
