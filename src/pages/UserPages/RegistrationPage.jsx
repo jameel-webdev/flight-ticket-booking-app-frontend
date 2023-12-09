@@ -20,7 +20,7 @@ const RegistrationPage = () => {
 
   useEffect(() => {
     if (userInfo) {
-      navigate("/");
+      navigate("/search");
     }
   }, [navigate, userInfo]);
 
@@ -30,7 +30,7 @@ const RegistrationPage = () => {
       const res = await register({ name, email, password });
       dispatch(setCredentials({ ...res }));
       toast.success(res.message);
-      navigate("/");
+      navigate("/search");
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }
