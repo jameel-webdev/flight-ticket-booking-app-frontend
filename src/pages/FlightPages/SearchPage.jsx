@@ -32,7 +32,7 @@ const SearchPage = () => {
           <Row>
             <Col>
               {isError ? (
-                <h3>No data found</h3>
+                <h3>No Flights Available !</h3>
               ) : (
                 <FlightcardComponent flightsData={flightsData} />
               )}

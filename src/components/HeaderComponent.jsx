@@ -7,6 +7,7 @@ import { useLogoutMutation } from "../slices/Users/userApiSlice";
 import { useNavigate } from "react-router-dom";
 import { removeCredentials } from "../slices/Users/userSlice";
 import { toast } from "react-toastify";
+import { removeFlightData } from "../slices/Flights/flightSlice";
 
 const HeaderComponent = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const HeaderComponent = () => {
     try {
       const res = await logout().unwrap();
       dispatch(removeCredentials());
+      dispatch(removeFlightData());
       navigate("/");
       toast.success(res.message);
     } catch (error) {}
@@ -42,7 +44,7 @@ const HeaderComponent = () => {
           </LinkContainer>
           {userInfo ? (
             <NavDropdown
-              title={userInfo.name || userInfo?.data?.name}
+              title={userInfo?.data?.name}
               id="username"
               className="me-2 d-inline"
               style={{ width: "10rem" }}

@@ -91,7 +91,7 @@ const SidebarComponent = () => {
       link: "/allbookings",
     },
   ];
-  const menuToBeRendered = userInfo?.isAdmin ? adminMenu : userMenu;
+  const menuToBeRendered = userInfo?.data?.isAdmin ? adminMenu : userMenu;
   const noUser = userInfo ? menuToBeRendered : mainMenu;
   useEffect(() => {
     window.addEventListener("resize", handleResize);

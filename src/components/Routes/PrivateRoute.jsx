@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 const PrivateRoute = () => {
   const { userInfo } = useSelector((state) => state.auth);
-  const notAdmin = userInfo.isAdmin ? true : false;
+  const notAdmin = userInfo.data.isAdmin ? true : false;
   return notAdmin ? <Navigate to="/" replace /> : <Outlet />;
 };
 

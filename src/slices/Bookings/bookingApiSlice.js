@@ -1,12 +1,16 @@
 import { apiSlice } from "../apiSlice";
 
 const BOOKING_URL = "/api/bookings";
+const RAZORPAY_URL = "/api/razorpay";
 
 export const bookingApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    book: builder.mutation({
+    getRazorKey: builder.query({
+      query: () => `${RAZORPAY_URL}/getkey`,
+    }),
+    razorOrder: builder.mutation({
       query: (data) => ({
-        url: `${BOOKING_URL}/newbooking`,
+        url: `${RAZORPAY_URL}/order`,
         method: "POST",
         body: data,
       }),
@@ -36,4 +40,6 @@ export const {
   useUpdateMutation,
   useGetBookingByIdQuery,
   useGetallbookingsQuery,
+  useRazorOrderMutation,
+  useGetRazorKeyQuery,
 } = bookingApiSlice;

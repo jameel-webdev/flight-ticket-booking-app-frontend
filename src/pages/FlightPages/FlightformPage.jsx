@@ -190,8 +190,6 @@ const FlightformPage = () => {
                 <option>Choose flight status</option>
                 <option value="Schedule">Schedule</option>
                 <option value="Arrived">Arrived</option>
-                <option value="Delayed">Delayed</option>
-                <option value="Cancelled">Cancelled</option>
               </Form.Select>
             </Form.Group>
           </Col>

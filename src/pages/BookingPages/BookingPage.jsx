@@ -4,8 +4,11 @@ import ItineraryComponent from "../../components/ItineraryComponent";
 import SeatboxComponent from "../../components/SeatboxComponent";
 import { useGetflightByIdQuery } from "../../slices/Flights/flightApiSlice";
 import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setFlightData } from "../../slices/Flights/flightSlice";
 
 const BookingPage = () => {
+  const dispatch = useDispatch();
   const [selectedSeats, setSelectedSeats] = useState([]);
   const flightParams = useParams();
   const [flightIdData, setFlightIdData] = useState([]);
@@ -15,6 +18,7 @@ const BookingPage = () => {
   useEffect(() => {
     if (!isLoading && flightData) {
       setFlightIdData(flightData);
+      dispatch(setFlightData({ ...flightData }));
     }
   }, [flightData, isLoading]);
   return (
@@ -22,7 +26,7 @@ const BookingPage = () => {
       <Container>
         {flightData && flightIdData ? (
           <Row>
-            <Col xs={12} sm={6} md={8}>
+            <Col xs={12} sm={12} md={8}>
               <ItineraryComponent
                 flightData={flightIdData.flight}
                 selectedSeats={selectedSeats}
