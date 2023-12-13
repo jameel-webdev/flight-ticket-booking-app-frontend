@@ -24,19 +24,19 @@ const ItineraryComponent = ({ flightData, selectedSeats }) => {
   const createOrder = async () => {
     try {
       const res = await razorOrder({
-        amount: flightData.price * 100,
+        amount: flightData.price * selectedSeats.length * 100,
         receipt: flightId,
       });
 
       const options = {
         key: data.key,
-        amount: res.data.order.amount * selectedSeats.length,
+        amount: res.data.order.amount,
         currency: "INR",
         name: "FlyPulse",
         description: "Test Transaction",
         image: "/flypulse-logo.png",
         order_id: res.data.order.id,
-        callback_url: `https://flight-ticket-booking-webapp.onrender.com/api/razorpay/validate?userId=${userInfo.data._id}&flightId=${flightData._id}&seatsBooked=${selectedSeats}`,
+        callback_url: `http://localhost:6006/api/razorpay/validate?userId=${userInfo.data._id}&flightId=${flightData._id}&seatsBooked=${selectedSeats}`,
         prefill: {
           name: userInfo.name,
           email: userInfo.email,
