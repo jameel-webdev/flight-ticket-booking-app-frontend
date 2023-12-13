@@ -30,7 +30,7 @@ const ItineraryComponent = ({ flightData, selectedSeats }) => {
 
       const options = {
         key: data.key,
-        amount: res.data.order.amount,
+        amount: res.data.order.amount * selectedSeats.length,
         currency: "INR",
         name: "FlyPulse",
         description: "Test Transaction",
