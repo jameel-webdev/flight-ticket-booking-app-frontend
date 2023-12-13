@@ -23,10 +23,7 @@ const SearchformComponent = ({ setSelectedSearch }) => {
   return (
     <Container>
       <Row className="card py-3">
-        <Form
-          onSubmit={handleSearch}
-          className="d-flex flex-wrap justify-content-between"
-        >
+        <Form className="d-flex flex-wrap justify-content-between">
           <Col sm={12} md={3}>
             <Form.Group>
               <Form.Select
@@ -79,9 +76,31 @@ const SearchformComponent = ({ setSelectedSearch }) => {
               />
             </Form.Group>
           </Col>
-          <Col sm={12} md={2}>
+          <Col sm={12} md={1}>
             <Form.Group>
-              <Button as="input" type="submit" value="Search" />
+              <Button
+                as="input"
+                type="submit"
+                value="Search"
+                onClick={handleSearch}
+              />
+            </Form.Group>
+          </Col>
+          <Col sm={12} md={1}>
+            <Form.Group>
+              <Button
+                as="input"
+                type="submit"
+                variant="warning"
+                value="Clear"
+                onClick={() =>
+                  setSelectedSearch({
+                    origin: "",
+                    destination: "",
+                    journeyDate: "",
+                  })
+                }
+              />
             </Form.Group>
           </Col>
         </Form>

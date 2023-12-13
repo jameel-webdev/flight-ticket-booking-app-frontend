@@ -33,7 +33,7 @@ const FightcardComponent = ({ flightsData }) => {
                     <Card.Subtitle className="mb-2 text-muted">
                       Fare
                     </Card.Subtitle>
-                    <Card.Text>{item.price}</Card.Text>
+                    <Card.Text>₹ {item.price}</Card.Text>
                   </Col>
                   <Col xs={6} md={2}>
                     <Card.Subtitle className="mb-2 text-muted">
