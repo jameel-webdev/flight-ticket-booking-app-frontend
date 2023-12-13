@@ -43,9 +43,9 @@ const HeroPage = () => {
                 MERN - Flight Ticket Booking WebApp
               </h1>
               <p className="text-center mb-4 fs-5">
-                A capstone project focusing on a flight ticket booking app
-                involves designing and implementing a comprehensive solution for
-                users to seamlessly book and manage their air travel.
+                Project focusing on a flight ticket booking app involves
+                designing and implementing a comprehensive solution for users to
+                seamlessly book and manage their air travel.
               </p>
               <p>
                 <strong>Frontend :</strong> Vite-React , React-bootstrap ,
