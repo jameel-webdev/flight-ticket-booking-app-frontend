@@ -36,7 +36,7 @@ const ItineraryComponent = ({ flightData, selectedSeats }) => {
         description: "Test Transaction",
         image: "/flypulse-logo.png",
         order_id: res.data.order.id,
-        callback_url: `https://flight-ticket-booking-webapp.netlify.app/api/razorpay/validate?userId=${userInfo.data._id}&flightId=${flightData._id}&seatsBooked=${selectedSeats}`,
+        callback_url: `https://flight-ticket-booking-webapp.onrender.com/api/razorpay/validate?userId=${userInfo.data._id}&flightId=${flightData._id}&seatsBooked=${selectedSeats}`,
         prefill: {
           name: userInfo.name,
           email: userInfo.email,
