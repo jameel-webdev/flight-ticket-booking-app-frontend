@@ -52,3 +52,15 @@ To view your booking history, click on the "Go to my trips" button in transactio
 #### Admin Credentials:
 ##### email : admin123@gmail.com
 password : admin123
+
+## Screenshots
+
+![Homepage](https://github.com/jameel-webdev/flight-ticket-booking-app-backend/assets/126319130/04ed80c7-ef1e-404c-baa8-15a6a07f9ade)
+![SignInpage](https://github.com/jameel-webdev/flight-ticket-booking-app-backend/assets/126319130/1ecc8e34-fffb-485e-ac7a-5f670218fda1)
+![SignUppage](https://github.com/jameel-webdev/flight-ticket-booking-app-backend/assets/126319130/ab795f6b-3856-4c08-8ce1-21b0b412c1cc)
+![FlightDetails](https://github.com/jameel-webdev/flight-ticket-booking-app-backend/assets/126319130/90b07960-60f7-4769-ac3f-66786670f2be)
+![SearchFlights](https://github.com/jameel-webdev/flight-ticket-booking-app-backend/assets/126319130/7d09cd1a-c0df-4844-b43c-844a60de2b17)
+![Itinerarypage](https://github.com/jameel-webdev/flight-ticket-booking-app-backend/assets/126319130/2fec6e8b-7115-4428-a8f2-a47df2e6d410)
+![SeatSelection](https://github.com/jameel-webdev/flight-ticket-booking-app-backend/assets/126319130/d9ae6d83-d8a9-4aca-ba68-da55e1735172)
+![PaymentDetailspage](https://github.com/jameel-webdev/flight-ticket-booking-app-backend/assets/126319130/9b1237ae-f97e-486e-881f-c8ecada1ec76)
+![MyBookingspage](https://github.com/jameel-webdev/flight-ticket-booking-app-backend/assets/126319130/be634395-1013-4081-923f-68eafa3032a7)
